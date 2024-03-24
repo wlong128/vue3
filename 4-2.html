@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ url }}</p>
+        <p v-html="url"></p>
+        <p>單價：{{ price }}</p>
+        <p>數量：{{ count }}</p>
+        <p>小計：{{ price * count }}</p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    url:'<a href="https://tw.yahoo.com">YAHOO</a>',
+                    price:30,
+                    count:5
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
