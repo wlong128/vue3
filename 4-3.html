@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-3 方法選項</title>
+</head>
+<body>
+    <div id="app">
+        <h1>4-3 方法選項</h1>
+        <h2>1. 使用方法</h2>
+        <h3>a. 插值</h3>
+        輸入值：<input type="text" name="" id="" v-model="message"><br>
+        <p>反轉內容：{{ reversendMessage() }}</p>
+        <h3>b. 使用事件調用</h3>
+        {{ num }}
+        <p><button v-on:click="add()">增加</button></p>
+        <h2>2. 傳遞參數</h2>
+        {{ num2 }}
+        <p><button v-on:click="add2(2)">增加2</button></p>
+        <h2>3. 方法間的調用</h2>
+        {{ content }} {{ content2 }}
+        {{ way2() }}
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    message: '',
+                    num: 1,
+                    num2: 2,
+                    content: '唐詩',
+                    content2: ''
+                }
+            },
+            methods: {
+                reversendMessage: function() {
+                    return this.message.split('').reverse().join('')
+                },
+                add: function() {
+                    this.num += 1
+                },
+                add2: function(a) {
+                    this.num2 += a
+                },
+                way1: function() {
+                    this.content2 = '白日依山盡，黃河入海流。'
+                },
+                way2: function() {
+                    this.way1()
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

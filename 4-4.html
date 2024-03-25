@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-4 生命週期建構子</title>
+</head>
+<body>
+    <div id="app">
+        <h1>4-4 生命週期建構子</h1>
+        <h2>1. 認識生命週期建構子</h2>
+        <p>{{ msg }}</p>
+        <h2>2. created 和 mounted</h2>
+        <ul>
+            <li id="b1"></li>
+            <li id="b2"></li>
+            <li id="b3"></li>
+        </ul>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    msg: '床前明月光，疑是地上霜。',
+                    name: '',
+                    city: '',
+                    price: 0
+                }
+            },
+            methods: {
+                way: function() {
+                    console.log('使用 created 初始化方法')
+                }
+            },
+            beforeCreate: function() {
+                console.log('beforeCreate')
+            },
+            created: function() {
+                this.way()
+                this.name = 'Apple'
+                this.city = 'Taipei'
+                this.price = 25
+                console.log('created')
+            },
+            beforeMount: function() {
+                console.log('beforeMount')
+            },
+            mounted: function() {
+                console.log('使用 mounted 變更實體內容')
+                document.getElementById('b1').innerText = this.name
+                document.getElementById('b2').innerText = this.city
+                document.getElementById('b3').innerText = this.price
+                console.log('mounted')
+            },
+            beforeUpdate: function() {
+                console.log('beforeUpdate')
+            },
+            updated: function() {
+                console.log('updated')
+            }
+        }).mount('#app')
+        setTimeout (function() {
+            vm.msg = '舉頭望明月，低頭思故鄉。'
+        }, 5000)
+    </script>
+</body>
+</html>

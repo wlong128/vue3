@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-5 指令</title>
+</head>
+<body>
+    <div id="app">
+        <h1>4-5 指令</h1>
+        <h2>1. 指令</h2>
+        <p><a v-bind:href="url">YAHOO</a></p>
+        <p><button v-on:click="go">Google</button></p>
+        <h2>2. 動態參數</h2>
+        <p><a v-bind:[attr]="url">YAHOO</a></p>
+        <p><button v-on:[event]="go">Google</button></p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    url: 'https://tw.yahoo.com',
+                    attr: 'href',
+                    event: 'click'
+                }
+            },
+            methods: {
+                go: function() {
+                    location.href = 'https://www.google.com'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

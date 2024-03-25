@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>4-2 插值</title>
 </head>
 <body>
     <div id="app">
+        <h1>4-2 插值</h1>
+        <h2>1. 字串插值</h2>
         <p>{{ url }}</p>
+        <h2>原始 HTML</h2>
         <p v-html="url"></p>
+        <h2>2. 使用 Javascript 表達式</h2>
         <p>單價：{{ price }}</p>
         <p>數量：{{ count }}</p>
         <p>小計：{{ price * count }}</p>
