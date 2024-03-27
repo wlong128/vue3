@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-bind</h1>
+        <input type="button" value="按鈕" v-bind:title="Title" v-bind:style="{color:Color,width:Width+'px'}">
+        <p><a :href="Address">超連結</a></p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    Title: '這是自訂的 title 屬性',
+                    Color: 'red',
+                    Width: '100',
+                    Address: 'https://tw.yahoo.com'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

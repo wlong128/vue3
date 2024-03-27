@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if、v-else-if、v-else</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-if、v-else-if、v-else</h1>
+        <h2>1. v-if</h2>
+        <h3 v-if="ok">西瓜</h3>
+        <h3 v-if="no">蘋果</h3>
+        <h3 v-if="num>=1000">庫存很充足！</h3>
+        <h2>2. v-else-if、v-else</h2>
+        <h3 v-if="score>=90">優秀</h3>
+        <h3 v-else-if="score>=80">合格</h3>
+        <h3 v-else-if="score>=60">及格</h3>
+        <h3 v-else>不及格</h3>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    ok: true,
+                    no: false,
+                    num: 1000,
+                    score: 85
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

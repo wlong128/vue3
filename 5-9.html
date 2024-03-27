@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-once</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-once</h1>
+        <p v-once>不可改變：{{ message }}</p>
+        <p>可以改變：{{ message }}</p>
+        <p><input type="text" v-model="message"></p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    message: 'apple'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綜合練習-下拉式目錄</title>
+    <style>
+        body {
+            width: 600px;
+            background-color: yellow;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+            color: #fff;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #fff;
+            border-width: 1px 1px 0 0;
+            background-color: #5d478b;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        #app>li {
+            float: left;
+            text-align: center;
+            position: relative;
+        }
+
+        #app>li a:hover {
+            color: #fff;
+            background-color: #ff8c69;
+        }
+
+        #app li ul {
+            margin-left: -40px;
+            margin-top: 1px;
+            font-size: 12px;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <li v-for="menu in menus" @mouseover="menu.show = !menu.show" @mouseout="menu.show = !menu.show">
+            <a :href="menu.url">
+                {{ menu.name }}
+            </a>
+            <ul v-show="menu.show">
+                <li v-for="subMenu in menu.subMenus">
+                    <a :href="subMenu.url">
+                        {{ subMenu.name }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    menus: [
+                        {
+                            name: '線上課程',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '經點書籍',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python 圖書',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave 圖書',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP 圖書',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '技術支援',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python 技術支援',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave 技術支援',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP 技術支援',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '關於我們',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: '團隊介細',
+                                    url: '#'
+                                },
+                                {
+                                    name: '聯絡我們',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

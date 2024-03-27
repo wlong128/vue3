@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-for</h1>
+        <h2>1. 遍歷陣列</h2>
+        <ul>
+            <li v-for="(item,index) in machines">
+                {{ index+1 }} - {{ item.name }} - {{ item.city }} - {{ item.price }}元
+            </li>
+        </ul>
+        <h2>2. 遍歷物件</h2>
+        <ul>
+            <li v-for="(value,key,index) in machine">
+                {{ index+1 }} - {{ key }} - {{ value }}{{ key=='price'?'元':''}}
+            </li>
+        </ul>
+        <h2>3. 遍歷整數</h2>
+        <ul>
+            <li v-for="item in 10">
+                {{ item }}
+            </li>
+        </ul>
+        <h2>4. 使用 &lt;template&gt; </h2>
+        <ul>
+            <template v-for="(value,key,index) in machine">
+                <li>{{ index+1 }} - {{ key }} - {{ value }}{{ key=='price'?'元':''}}</li>
+            </template>
+        </ul>
+        <h2>5. 陣列更新檢測</h2>
+        <ul>
+            <li v-for="(name,index) in students">
+                {{ name }}
+            </li>
+        </ul>
+        <h2>6. key 屬性</h2>
+        <div>品名<input type="text" v-model="txtName"></div>
+        <div>產地<input type="text" v-model="txtCity"></div>
+        <div>價格<input type="text" v-model="txtPrice"><button v-on:click="add()">添加</button></div>
+        <hr>
+        <p v-for="item in machines" v-bind:key="item.name">
+            <input type="checkbox" name="" id="">
+            <span>名稱：{{ item.name }} - 產地：{{ item.city }} - 價格：{{ item.price }}</span>
+        </p>
+        <h2>7. 過濾與排序</h2>
+        <p>所有產品：</p>
+        <ul>
+            <li v-for="item in machines">{{ item }}</li>
+        </ul>
+        <p>產地為台北市的產品：</p>
+        <ul>
+            <li v-for="item in citys">{{ item }}</li>
+        </ul>
+        <p>價格大於20000的產品：</p>
+        <ul>
+            <li v-for="item in prices()">{{ item }}</li>
+        </ul>
+        <h2>8. v-for 與 v-if 混合使用</h2>
+        <p>產地為桃園市的產品：</p>
+        <ul>
+            <template v-for="item in machines">
+                <li v-if="(item.city==='桃園市')">{{ item }}</li>
+            </template>
+        </ul>
+        <p>尚有庫存的產品：</p>
+        <ul>
+            <template v-for="item in machines">
+                <li v-if="item.stock">{{ item }}</li>
+            </template>
+        </ul>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    machines: [
+                        {name:'洗衣機',city:'台北市',price:'18600',stock:true},
+                        {name:'冰箱',city:'桃園市',price:'12500',stock:false},
+                        {name:'冷氣',city:'新竹市',price:'35200',stock:true}
+                    ],
+                    machine: {
+                        name: '液晶電視',
+                        city: '高雄市',
+                        price: '15000'
+                    },
+                    students: [
+                        '張三',
+                        '李四',
+                        '王五'
+                    ],
+                    txtName: '',
+                    txtCity: '',
+                    txtPrice: ''
+                }
+            },
+            methods: {
+                add: function() {
+                    this.machines.unshift({
+                        name: this.txtName,
+                        city: this.txtCity,
+                        price: this.txtPrice
+                    })
+                },
+                prices: function() {
+                    return this.machines.filter(function(machines){
+                        return machines.price > 20000
+                    })
+                }
+            },
+            computed: {
+                citys: function() {
+                    return this.machines.filter(function(machines){
+                        return machines.city==='台北市'
+                    })
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

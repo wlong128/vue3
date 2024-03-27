@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css" />
+
+    <title>綜合練習-Bootstrap 5 目錄</title>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item" v-for="menu in menus" :class="{'dropdown': menu.subMenus && menu.subMenus.length > 0}">
+                            <a class="nav-link" :class="{'dropdown-toggle': menu.subMenus && menu.subMenus.length > 0}" :href="menu.url" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ menu.name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" v-if="menu.subMenus && menu.subMenus.length > 0">
+                                <li v-for="subMenu in menu.subMenus">
+                                    <a class="dropdown-item" :href="menus.url">{{ subMenu.name }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    menus: [
+                        {
+                            name: '首頁',
+                            url: '#',
+                            show: false
+                        },
+                        {
+                            name: '線上課程',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '經點書籍',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python 圖書',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave 圖書',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP 圖書',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '技術支援',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: 'Python 技術支援',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'Jave 技術支援',
+                                    url: '#'
+                                },
+                                {
+                                    name: 'PHP 技術支援',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                        {
+                            name: '關於我們',
+                            url: '#',
+                            show: false,
+                            subMenus: [
+                                {
+                                    name: '團隊介細',
+                                    url: '#'
+                                },
+                                {
+                                    name: '聯絡我們',
+                                    url: '#'
+                                }
+                            ]
+                        },
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-show</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-show</h1>
+        <h3 v-show="ok">西瓜</h3>
+        <h3 v-show="no">蘋果</h3>
+        <h3 v-show="num>=1000">庫存很充足！</h3>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    ok: true,
+                    no: false,
+                    num: 1000
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

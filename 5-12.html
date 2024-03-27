@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定義指令</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>自定義指令</h1>
+        <h2>1. 注冊自定義指令</h2>
+        <p>姓名：<input type="text" v-focus></p>
+        <h2>2. 建構子函數</h2>
+        <p v-highlight:foo.a="message"></p>
+        <h2>3. 動態指令參數</h2>
+        <p v-style:[a1]="v1" v-style:[a2]="v2">月下獨酌</p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    message: '醒時同交歡，醉後各分散。',
+                    a1: 'color',
+                    v1: 'red',
+                    a2: 'background-color',
+                    v2: 'yellow'
+                }
+            },
+            // 局部註冊
+            // directives: {
+            //     focus: {
+            //         mounted(el) {
+            //             el.focus();
+            //         }
+            //     }
+            // }
+        })
+        // 全域註冊
+        vm.directive('focus', {
+            mounted(el) {
+                el.focus()
+            }
+        })
+        vm.directive('highlight', {
+            mounted(el, binding, vnode) {
+                el.style.backgroundColor = 'yellow'
+                let s = JSON.stringify
+                el.innerHTML =
+                    'instance:' + s(binding.instance) + '<br>' +
+                    'value:' + s(binding.value) + '<br>' +
+                    'arg:' + s(binding.arg) + '<br>' +
+                    'modifiers:' + s(binding.modifiers) + '<br>' +
+                    'vnode:' + Object.keys(vnode).join(',') + '<br>'
+            }
+        })
+        vm.directive('style', {
+            mounted(el, binding, vnode) {
+                let s = binding.arg // 接收參數
+                el.style[s] = binding.value // 設置樣式
+            }
+        })
+        vm.mount('#app')
+    </script>
+</body>
+
+</html>

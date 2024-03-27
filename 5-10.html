@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-pre</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-pre</h1>
+        <p v-pre>唐詩欣賞：{{ message }}</p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    message: '花間一壺酒，獨酌無相親。'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

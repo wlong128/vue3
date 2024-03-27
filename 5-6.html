@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-on</h1>
+        <p>
+            <button v-on:click="number-=1">-1</button>
+            <span>{{ number }}</span>
+            <button v-on:click="number+=1">+1</button>
+        </p>
+        <p>
+            <button v-on:click="say()">唐詩</button>
+        </p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    number: 100
+                }
+            },
+            methods: {
+                say: function() {
+                    alert('兩岸猿聲啼不住，輕舟已過萬重山。')
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

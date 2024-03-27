@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <style>
+        [v-cloak] {
+            display: none;
+            /* visibility: hidden; */
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>v-cloak</h1>
+        <p>唐詩欣賞：<span v-cloak>{{ message }}</span></p>
+    </div>
+    <script src="js/vue3.js"></script>
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    message: '舉杯邀明月，對影成三人。'
+                }
+            },
+            beforeCreate: function() {
+                alert('beforeCreate')
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
